@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function saveOrder(order) {
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('lastOrder', JSON.stringify(order));
+  }
+
   function validateEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
@@ -60,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Nome:</strong> ${order.name}</p>
         <p><strong>Pizza:</strong> ${order.pizza} x ${order.quantity}</p>
         <p><strong>Extra:</strong> ${extras}</p>
+        <p><strong>Indirizzo:</strong> ${order.address}</p>
         <p><strong>Prezzo totale:</strong> €${order.total.toFixed(2)}</p>
         <p><strong>Pagamento:</strong> ${order.payment}</p>
         <p><strong>Note:</strong> ${order.notes || 'Nessuna'}</p>
@@ -80,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
+      address: form.address.value.trim(),
       pizza: form.pizza.value,
       quantity,
       extras,
@@ -93,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.name.value = order.name;
     form.email.value = order.email;
     form.phone.value = order.phone;
+    form.address.value = order.address;
     form.pizza.value = order.pizza;
     quantityInput.value = order.quantity;
     form.querySelectorAll('fieldset input[type="checkbox"]').forEach(cb => {
@@ -124,6 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
   form.phone.addEventListener('input', () => {
     showError(form.phone, validatePhone(form.phone.value) ? '' : 'Telefono non valido');
   });
+  form.address.addEventListener('input', () => {
+    showError(form.address, form.address.value.trim() ? '' : 'Campo obbligatorio');
+  });
 
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
@@ -140,12 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!form.name.value.trim()) { showError(form.name, 'Campo obbligatorio'); valid = false; }
     if (!validateEmail(form.email.value)) { showError(form.email, 'Email non valida'); valid = false; }
     if (!validatePhone(form.phone.value)) { showError(form.phone, 'Telefono non valido'); valid = false; }
+    if (!form.address.value.trim()) { showError(form.address, 'Campo obbligatorio'); valid = false; }
     if (!form.terms.checked) { document.getElementById('terms-error').textContent = 'Necessario'; valid = false; }
 
     if (!valid) return;
 
     const order = gatherOrder();
-    localStorage.setItem('lastOrder', JSON.stringify(order));
+    saveOrder(order);
     buildSummary(order);
     form.classList.add('hidden');
   });
@@ -173,6 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('dark-mode');
     themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
   }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
   updateTotal();
   loadLastOrder();
 });
