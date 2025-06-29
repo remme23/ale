@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizzeria di Ale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Xx3Xc9ck+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <h1 class="title">Pizzeria di Ale</h1>
+    <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun"></i></button>
+  </header>
+  <main>
+    <section id="previous-order" class="hidden"></section>
+    <section id="order-section">
+      <h2>Ordina la tua pizza</h2>
+      <form id="order-form" novalidate>
+        <div class="form-group">
+          <label for="name">Nome*</label>
+          <input id="name" name="name" type="text" required aria-required="true">
+          <span class="error-message" id="name-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email*</label>
+          <input id="email" name="email" type="email" required aria-required="true">
+          <span class="error-message" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefono*</label>
+          <input id="phone" name="phone" type="tel" required aria-required="true">
+          <span class="error-message" id="phone-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="pizza">Tipo di pizza*</label>
+          <select id="pizza" name="pizza" aria-required="true">
+            <option value="Margherita" data-price="5">Margherita - €5</option>
+            <option value="Diavola" data-price="6">Diavola - €6</option>
+            <option value="Quattro Formaggi" data-price="7">Quattro Formaggi - €7</option>
+            <option value="Prosciutto e Funghi" data-price="6.5">Prosciutto e Funghi - €6.5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantità</label>
+          <div class="quantity" role="group" aria-labelledby="quantity-label">
+            <button type="button" id="decrease" aria-label="Diminuisci">-</button>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" aria-label="Quantità">
+            <button type="button" id="increase" aria-label="Aumenta">+</button>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Ingredienti extra (0,50€)</legend>
+          <label><input type="checkbox" value="Mozzarella extra" data-price="0.5"> Mozzarella extra</label>
+          <label><input type="checkbox" value="Cipolla" data-price="0.5"> Cipolla</label>
+          <label><input type="checkbox" value="Olive" data-price="0.5"> Olive</label>
+          <label><input type="checkbox" value="Acciughe" data-price="0.5"> Acciughe</label>
+          <label><input type="checkbox" value="Funghi" data-price="0.5"> Funghi</label>
+        </fieldset>
+        <div class="form-group">
+          <label for="notes">Note personali</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Metodo di pagamento</label>
+          <label><input type="radio" name="payment" value="Contanti" checked> Contanti</label>
+          <label><input type="radio" name="payment" value="Carta"> Carta</label>
+          <label><input type="radio" name="payment" value="Satispay"> Satispay</label>
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" id="terms" required aria-required="true"> Accetto condizioni e privacy*</label>
+          <span class="error-message" id="terms-error"></span>
+        </div>
+        <p class="price">Totale: <span id="total">€0.00</span></p>
+        <button type="submit" class="submit-btn">Ordina</button>
+      </form>
+    </section>
+    <section id="summary" class="hidden" aria-live="polite"></section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Pizzeria di Ale</p>
+  </footer>
+</body>
+</html>
