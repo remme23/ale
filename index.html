@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizzeria di Ale</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Benvenuti nella Pizzeria di Ale</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Ordina la tua pizza</h2>
+      <form id="order-form">
+        <label for="name">Nome:</label>
+        <input id="name" name="name" type="text" required>
+        <label for="pizza">Scegli la pizza:</label>
+        <select id="pizza" name="pizza">
+          <option value="Margherita">Margherita</option>
+          <option value="Diavola">Diavola</option>
+          <option value="Quattro Formaggi">Quattro Formaggi</option>
+          <option value="Prosciutto e Funghi">Prosciutto e Funghi</option>
+        </select>
+        <button type="submit">Ordina</button>
+      </form>
+      <div id="summary"></div>
+    </section>
+  </main>
+</body>
+</html>
