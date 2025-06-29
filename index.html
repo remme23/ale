@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizzeria di Ale</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Benvenuti nella Pizzeria di Ale</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Ordina la tua pizza</h2>
+      <div class="gallery">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1548365328-13e8a1a5fc1f?auto=format&fit=crop&w=300&q=80" alt="Margherita">
+          <figcaption>Margherita</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1601924576822-0cb9beae7848?auto=format&fit=crop&w=300&q=80" alt="Diavola">
+          <figcaption>Diavola</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=300&q=80" alt="Quattro Formaggi">
+          <figcaption>Quattro Formaggi</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1601924926432-fdafe1239616?auto=format&fit=crop&w=300&q=80" alt="Prosciutto e Funghi">
+          <figcaption>Prosciutto e Funghi</figcaption>
+        </figure>
+      </div>
+      <form id="order-form">
+        <label for="name">Nome:</label>
+        <input id="name" name="name" type="text" required>
+        <label for="pizza">Scegli la pizza:</label>
+        <select id="pizza" name="pizza">
+          <option value="Margherita">Margherita</option>
+          <option value="Diavola">Diavola</option>
+          <option value="Quattro Formaggi">Quattro Formaggi</option>
+          <option value="Prosciutto e Funghi">Prosciutto e Funghi</option>
+        </select>
+        <button type="submit">Ordina</button>
+      </form>
+      <div id="summary"></div>
+    </section>
+  </main>
+</body>
+</html>
