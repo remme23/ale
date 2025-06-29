@@ -4,21 +4,22 @@
   <meta charset="UTF-8">
   <title>Pizzeria di Ale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ordina online le migliori pizze artigianali con ingredienti freschi.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Xx3Xc9ck+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
 </head>
 <body>
-  <header class="hero">
+  <header class="hero reveal">
     <h1 class="title">Pizzeria di Ale</h1>
     <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun"></i></button>
   </header>
   <main>
-    <section id="previous-order" class="hidden"></section>
-    <section id="order-section">
+    <section id="previous-order" class="hidden reveal"></section>
+    <section id="order-section" class="reveal">
       <h2>Ordina la tua pizza</h2>
       <form id="order-form" novalidate>
         <div class="form-group">
@@ -35,6 +36,11 @@
           <label for="phone">Telefono*</label>
           <input id="phone" name="phone" type="tel" required aria-required="true">
           <span class="error-message" id="phone-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="address">Indirizzo di consegna*</label>
+          <input id="address" name="address" type="text" required aria-required="true">
+          <span class="error-message" id="address-error"></span>
         </div>
         <div class="form-group">
           <label for="pizza">Tipo di pizza*</label>
@@ -79,7 +85,7 @@
         <button type="submit" class="submit-btn">Ordina</button>
       </form>
     </section>
-    <section id="summary" class="hidden" aria-live="polite"></section>
+    <section id="summary" class="hidden reveal" aria-live="polite"></section>
   </main>
   <footer>
     <p>&copy; 2025 Pizzeria di Ale</p>
